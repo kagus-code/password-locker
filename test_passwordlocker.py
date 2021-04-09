@@ -13,6 +13,12 @@ class TestUser (unittest.TestCase):
         '''
         self.new_user = User("kagus", "king98")
 
+    def tearDown(self):
+        '''
+        tearDown method cleans up after each test is run 
+        '''
+        User.users_list = []
+
     def test_init(self):
         '''
         Test case to test if the object intialized properly
