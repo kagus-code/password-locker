@@ -81,6 +81,22 @@ class TestCredentials (unittest.TestCase):
         self.assertEqual(self.new_credentials.user_name, "droid")
         self.assertEqual(self.new_credentials.pass_word, "access")
 
+    def test_save_credentials(self):
+        '''
+        test_save_credentials tests if new credentials object is saved into the credentials list
+        '''
+        self.new_credentials.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list), 1)
+
+    def test_save_multiple_credentials(self):
+        '''
+        test to check if we can save multiple credentials into the contact list 
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("insta", "invuctus", "maneo")
+        test_credentials.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list), 2)
+
 
 if __name__ == '__main__':
     unittest.main()
