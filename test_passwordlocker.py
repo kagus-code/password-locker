@@ -53,6 +53,16 @@ class TestUser (unittest.TestCase):
         self.new_user.delete_user()
         self.assertEqual(len(User.users_list), 1)
 
+    def test_user_exists(self):
+        '''
+        test to check if we can return boolean if user doesnt exist
+        '''
+        self.new_user.save_user()
+        test_user = User("kagus", "king98")
+        test_user.save_user()
+        user_exists = User.user_exist("kagus")
+        self.assertTrue(user_exists)
+
         # END OF USER INSTANCES
 
 
