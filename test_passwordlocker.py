@@ -1,4 +1,6 @@
 import unittest
+import string
+import random
 from passwordlocker import User
 from passwordlocker import Credentials
 
@@ -123,6 +125,17 @@ class TestCredentials (unittest.TestCase):
         '''
         self.assertEqual(Credentials.display_credentials(),
                          Credentials.credentials_list)
+
+    def test_generate_random_password(self):
+        '''
+        test method for generating random password for new credentials 
+        '''
+        random_pass = Credentials.generate_password()
+
+        self.new_credentials = Credentials(f"insta", "kagwima", random_pass)
+        self.assertEqual(self.new_credentials.account, "insta")
+        self.assertEqual(self.new_credentials.user_name, "kagwima")
+        self.assertEqual(self.new_credentials.pass_word, random_pass)
 
 
 if __name__ == '__main__':
