@@ -1,5 +1,6 @@
 import unittest
 from passwordlocker import User
+from passwordlocker import Credentials
 
 
 class TestUser (unittest.TestCase):
@@ -51,6 +52,34 @@ class TestUser (unittest.TestCase):
         test_user.save_user()
         self.new_user.delete_user()
         self.assertEqual(len(User.users_list), 1)
+
+        # END OF USER INSTANCES
+
+
+class TestCredentials (unittest.TestCase):
+    '''
+    Test class that defines tes cases for the User behavior
+    '''
+
+    def setUp(self):
+        '''
+        Set up method for each credentials test case
+        '''
+        self.new_credentials = Credentials("facebook", "droid", "access")
+
+    def tearDown(self):
+        '''
+        tearDown method cleans up after each test is run 
+        '''
+        Credentials.credentials_list = []
+
+    def test_init(self):
+        '''
+        Test case to test if the object intialized properly
+        '''
+        self.assertEqual(self.new_credentials.account, "facebook")
+        self.assertEqual(self.new_credentials.user_name, "droid")
+        self.assertEqual(self.new_credentials.pass_word, "access")
 
 
 if __name__ == '__main__':

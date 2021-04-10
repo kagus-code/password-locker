@@ -22,3 +22,18 @@ class User:
         method that deletes a saved user 
         '''
         User.users_list.remove(self)
+
+
+class Credentials:
+    '''
+    Class generates new instance for credentials 
+    '''
+    credentials_list = []  # empty credentials list
+
+    def __init__(self, account, user_name, pass_word):
+        '''
+        init method that defines properties of the object
+        '''
+        self.account = account
+        self.user_name = user_name
+        self.pass_word = pass_word
