@@ -25,11 +25,11 @@ def del_user(user):
     user.delete_user()
 
 
-def check_existing_user(username):
+def check_existing_user(username, password):
     '''
     function to check if a user with that username exists and return Boolean
     '''
-    return User.user_exist(username)
+    return User.user_exist(username, password)
 
     # end of user functions
 
@@ -68,3 +68,35 @@ def generate_password():
     function to generate random password
     '''
     return Credentials.generate_password()
+
+
+def main():
+    while True:
+        print("Welcome to PassVault\nlg--Log in to Account. \nsu--Don't have an Account? Sign up")
+        code = input().lower()
+        if code == 'lg':
+            print("*"*50)
+            print("Enter your User name and your Password to log in:")
+            print('*' * 50)
+
+            username = input("Username :")
+
+            password = input("Password :")
+
+            if check_existing_user(username, password):
+                print("-"*10)
+                print(f"Welcome to your PassVault Account {username}")
+                print("-"*10)
+                print('\n')
+                continue
+
+            else:
+                print("-"*10)
+                print('Please enter a valid username or password !')
+                print("-"*10)
+                break
+
+
+if __name__ == '__main__':
+
+    main()

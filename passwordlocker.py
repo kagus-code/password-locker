@@ -28,7 +28,7 @@ class User:
         User.users_list.remove(self)
 
     @classmethod
-    def user_exist(cls, username):
+    def user_exist(cls, username, password):
         '''
         Method that checks if a user exists from the user list.
         Args:
@@ -37,7 +37,7 @@ class User:
             Boolean: True or false depending if the user exists
         '''
         for user in cls.users_list:
-            if user.username == username:
+            if user.username == username and user.password == password:
                 return True
 
         return False
