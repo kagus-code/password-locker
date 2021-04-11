@@ -102,23 +102,27 @@ def main():
 
     password = input("Password :")
     os.system('clear')
-    while check_existing_user(username, password):
-        print("-"*50)
-        print(f"DASHBOARD of {username}'s PASS-VAUL ACCOUNT ")
-        print("-"*50)
-        print("""USE THE FOLLOWING CODES NAVIGATE THE DASHBOARD ,
+    print("-"*50)
+    print(f"DASHBOARD of {username}'s PASS-VAUL ACCOUNT ")
+    print("-"*50)
+    print("""USE THE FOLLOWING CODES NAVIGATE THE DASHBOARD ,
         1:st-  STORE EXISTING CREDENTIALS,
         2:nc - CREATE NEW CREDENTIALS
         3:disp - DISPLAY ACCOUNTS""")
 
-        code_cred = input("enter code :").lower()
+    while check_existing_user(username, password):
+
+        code_cred = input("enter NAVIGATION code(st,nc,disp) :").lower()
         if code_cred == "st":
             account = input('Enter ACCOUNT NAME (eg,twitter):')
             user_name = input(f'USERNAME for {account} :')
             pass_word = input(f'PASSWORD for {account} :')
             save_credential(create_credentials(account, user_name, pass_word))
+            print('\n')
             print(
-                f'details for {account} account have been saved successfully---')
+                f'details for {account} account have been saved successfully---ENTER disp TO VIEW')
+            print("_"*30)
+
         elif code_cred == 'disp':
             if display_credentials():
                 print('\n')
@@ -134,13 +138,43 @@ def main():
 
             else:
                 print("you dont have saved accounts yet")
-        else:
+        elif code_cred == 'nc':
+            while True:
+                print("Do you want us to generate a secure password for you (y/n)")
+                answer = input().lower()
+                if answer == 'y':
+                    account = input('Enter ACCOUNT NAME (eg,twitter):')
+                    user_name = input(f'USERNAME for {account} :')
+                    pass_word = generate_password()
+                    print(f"Secure password is :  {pass_word}")
+                    save_credential(create_credentials(
+                        account, user_name, pass_word))
+                    print('\n')
+                    print(
+                        f'details for {account} account have been saved successfully---ENTER disp TO VIEW')
+                    print("_"*30)
+                    break
+                elif answer == 'n':
+                    account = input('Enter ACCOUNT NAME (eg,twitter):')
+                    user_name = input(f'USERNAME for {account} :')
+                    pass_word = input(f'PASSWORD for {account} :')
+                    save_credential(create_credentials(
+                        account, user_name, pass_word))
+                    print('\n')
+                    print(
+                        f'details for {account} account have been saved successfully---ENTER disp TO VIEW')
+                    print("_"*30)
+                    break
+                else:
+                    print("PLease enter YES(y) or NO(n)")
+                    continue
 
+        else:
             print("PLEASE ENTER A VALID CODE")
 
     else:
         print("-"*10)
-        print('Please enter a valid username or password !')
+        print('Please Reload and enter a valid username or password !')
         print("-"*10)
 
 
