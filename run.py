@@ -85,6 +85,13 @@ def generate_password():
     return Credentials.generate_password()
 
 
+def find_credential(account):
+    '''
+    Function that finds credential by account name 
+    '''
+    return Credentials.find_by_account(account)
+
+
 def main():
     print("""  +-+-+-+-+-+-+   +-+-+-+-+-+-+-+   +-+-+-+   +-+-+   +-+-+-+-+-+-+-+ +-+-+-+-+
  |P|l|e|a|s|e|   |s|i|g|n|-|u|p|   |f|o|r|   |a|n|   |a|c|c|o|u|n|t| |h|e|r|e|
@@ -171,8 +178,20 @@ def main():
                     print("PLease enter YES(y) or NO(n)")
                     continue
         elif code_cred == 'del':
-            print('\n')
-            print("Enter the name of the account you want to delete ")
+            if display_credentials():
+                print('\n')
+                print("Enter the name of the account you want to delete ")
+                account = input()
+                credential = find_credential(account)
+                delete_credentials(credential)
+                print("\n")
+                print(
+                    f"You have deleted credentials for the account name {credential.account} successfully")
+
+            else:
+                print("\n")
+                print("YOU HAVE NO SAVED CREDENTIALS PLEASE ADD BY ENTERING (st or ng)")
+                print("_"*30)
 
         else:
             print("PLEASE ENTER A VALID CODE")
