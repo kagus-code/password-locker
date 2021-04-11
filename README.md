@@ -26,8 +26,9 @@ This project was generated with [Python](https://www.python.org/downloads/releas
         $ chmod +x run.py
         $ ./run.py
 
-- To run test for the application
-  $ python3 passlock_test.py
+- To run test for the application :
+
+           $ python3.9 passlock_test.py
 
 ## Technologies Used
 
