@@ -108,11 +108,13 @@ def main():
     print("""USE THE FOLLOWING CODES NAVIGATE THE DASHBOARD ,
         1:st-  STORE EXISTING CREDENTIALS,
         2:nc - CREATE NEW CREDENTIALS
-        3:disp - DISPLAY ACCOUNTS""")
+        3:disp - DISPLAY ACCOUNTS
+        4:del   - Delete credentials
+        5:ex     - Exit PASS-VAUL""")
 
     while check_existing_user(username, password):
 
-        code_cred = input("enter NAVIGATION code(st,nc,disp) :").lower()
+        code_cred = input("enter NAVIGATION code(st,nc,disp,del,ex) :").lower()
         if code_cred == "st":
             account = input('Enter ACCOUNT NAME (eg,twitter):')
             user_name = input(f'USERNAME for {account} :')
@@ -168,9 +170,13 @@ def main():
                 else:
                     print("PLease enter YES(y) or NO(n)")
                     continue
+        elif code_cred == 'del':
+            print('\n')
+            print("Enter the name of the account you want to delete ")
 
         else:
             print("PLEASE ENTER A VALID CODE")
+            continue
 
     else:
         print("-"*10)

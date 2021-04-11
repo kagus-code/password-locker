@@ -84,3 +84,13 @@ class Credentials:
         password_random = ''.join(random.choice(
             string.printable) for i in range(8))
         return password_random
+
+    @classmethod
+    def find_by_account(cls, account):
+        '''
+        method to find credentials by the account name
+        '''
+
+        for credential in cls.credentials_list:
+            if credential.account == account:
+                return credential

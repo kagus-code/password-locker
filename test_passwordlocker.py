@@ -137,6 +137,16 @@ class TestCredentials (unittest.TestCase):
         self.assertEqual(self.new_credentials.user_name, "kagwima")
         self.assertEqual(self.new_credentials.pass_word, random_pass)
 
+    def test_find_credential_by_account(self):
+        '''
+        test to check if we can find a  credential by account name 
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("fb", "lol", "grant")
+        test_credentials.save_credentials()
+        found_account = Credentials.find_by_account("fb")
+        self.assertEqual(found_account.user_name, test_credentials.user_name)
+
 
 if __name__ == '__main__':
     unittest.main()
