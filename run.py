@@ -4,6 +4,20 @@ from passwordlocker import Credentials
 import os
 
 
+print(""" 
+
+ __        _______ _     ____ ___  __  __ _____   _____ ___    ____   _    ____ ____     __     ___   _   _ _     
+ \ \      / / ____| |   / ___/ _ \|  \/  | ____| |_   _/ _ \  |  _ \ / \  / ___/ ___|    \ \   / / \ | | | | |    
+  \ \ /\ / /|  _| | |  | |  | | | | |\/| |  _|     | || | | | | |_) / _ \ \___ \___ \ ____\ \ / / _ \| | | | |    
+   \ V  V / | |___| |__| |__| |_| | |  | | |___    | || |_| | |  __/ ___ \ ___) |__) |_____\ V / ___ \ |_| | |___ 
+    \_/\_/  |_____|_____\____\___/|_|  |_|_____|   |_| \___/  |_| /_/   \_\____/____/       \_/_/   \_\___/|_____|
+                                                                                                                  
+                                                                                                             
+
+
+""")
+
+
 def create_user(username, password):
     '''
     function to create new user 
@@ -72,8 +86,9 @@ def generate_password():
 
 
 def main():
-
-    print("Welcome to PassVault  Sign up for an account below")
+    print("""  +-+-+-+-+-+-+   +-+-+-+-+-+-+-+   +-+-+-+   +-+-+   +-+-+-+-+-+-+-+ +-+-+-+-+
+ |P|l|e|a|s|e|   |s|i|g|n|-|u|p|   |f|o|r|   |a|n|   |a|c|c|o|u|n|t| |h|e|r|e|
+ +-+-+-+-+-+-+   +-+-+-+-+-+-+-+   +-+-+-+   +-+-+   +-+-+-+-+-+-+-+ +-+-+-+-+ """)
     username = input("Enter your desired username : ")
     password = input("Enter password :")
     # create and save new user
@@ -87,6 +102,46 @@ def main():
 
     password = input("Password :")
     os.system('clear')
+    while check_existing_user(username, password):
+        print("-"*50)
+        print(f"DASHBOARD of {username}'s PASS-VAUL ACCOUNT ")
+        print("-"*50)
+        print("""USE THE FOLLOWING CODES NAVIGATE THE DASHBOARD ,
+        1:st-  STORE EXISTING CREDENTIALS,
+        2:nc - CREATE NEW CREDENTIALS
+        3:disp - DISPLAY ACCOUNTS""")
+
+        code_cred = input("enter code :").lower()
+        if code_cred == "st":
+            account = input('Enter ACCOUNT NAME (eg,twitter):')
+            user_name = input(f'USERNAME for {account} :')
+            pass_word = input(f'PASSWORD for {account} :')
+            save_credential(create_credentials(account, user_name, pass_word))
+            print(
+                f'details for {account} account have been saved successfully---')
+        elif code_cred == 'disp':
+            if display_credentials():
+                print('\n')
+                print("HERE ARE YOUR SAVED CREDENTIALS")
+                print("_"*30)
+                for credential in display_credentials():
+                    print(f"Account name : {credential.account}")
+                    print(
+                        f"username : {credential.user_name}")
+                    print(
+                        f"password : {credential.pass_word}")
+                    print("_"*30)
+
+            else:
+                print("you dont have saved accounts yet")
+        else:
+
+            print("PLEASE ENTER A VALID CODE")
+
+    else:
+        print("-"*10)
+        print('Please enter a valid username or password !')
+        print("-"*10)
 
 
 if __name__ == '__main__':
