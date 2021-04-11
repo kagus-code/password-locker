@@ -113,15 +113,17 @@ def main():
     print(f"DASHBOARD of {username}'s PASS-VAUL ACCOUNT ")
     print("-"*50)
     print("""USE THE FOLLOWING CODES NAVIGATE THE DASHBOARD ,
-        1:st-  STORE EXISTING CREDENTIALS,
-        2:nc - CREATE NEW CREDENTIALS
+        1:st   - STORE EXISTING CREDENTIALS,
+        2:nc   - CREATE NEW CREDENTIALS
         3:disp - DISPLAY ACCOUNTS
-        4:del   - Delete credentials
-        5:ex     - Exit PASS-VAUL""")
+        4:del  - Delete credentials
+        5:ex   - Exit PASS-VAUL
+        6:help - get help""")
 
     while check_existing_user(username, password):
 
-        code_cred = input("enter NAVIGATION code(st,nc,disp,del,ex) :").lower()
+        code_cred = input(
+            "enter NAVIGATION code(st,nc,disp,del,ex,help) :").lower()
         if code_cred == "st":
             account = input('Enter ACCOUNT NAME (eg,twitter):')
             user_name = input(f'USERNAME for {account} :')
@@ -134,6 +136,7 @@ def main():
 
         elif code_cred == 'disp':
             if display_credentials():
+                os.system('clear')
                 print('\n')
                 print("HERE ARE YOUR SAVED CREDENTIALS")
                 print("_"*30)
@@ -146,7 +149,7 @@ def main():
                     print("_"*30)
 
             else:
-                print("you dont have saved accounts yet")
+                print("YOU DONT HAVE ANY SAVED CREDENTIALS AT THE MOMENT")
         elif code_cred == 'nc':
             while True:
                 print("Do you want us to generate a secure password for you (y/n)")
@@ -190,8 +193,31 @@ def main():
 
             else:
                 print("\n")
-                print("YOU HAVE NO SAVED CREDENTIALS PLEASE ADD BY ENTERING (st or ng)")
+                print(
+                    "YOU HAVE NO SAVED CREDENTIALS PLEASE ADD BY ENTERING (st or ng)")
                 print("_"*30)
+
+        elif code_cred == 'help':
+            print("-"*50)
+            print(f"DASHBOARD of {username}'s PASS-VAUL ACCOUNT ")
+            print("-"*50)
+            print("""USE THE FOLLOWING CODES NAVIGATE THE DASHBOARD ,
+             1:st   - STORE EXISTING CREDENTIALS,
+             2:nc   - CREATE NEW CREDENTIALS
+             3:disp - DISPLAY ACCOUNTS
+             4:del  - Delete credentials
+            5:ex   - Exit PASS-VAUL
+            6:help - get help""")
+
+        elif code_cred == 'ex':
+            print("""  _______   ______     ______    _______     .______   ____    ____  _______     __   __   __  
+ /  _____| /  __  \   /  __  \  |       \    |   _  \  \   \  /   / |   ____|   |  | |  | |  | 
+|  |  __  |  |  |  | |  |  |  | |  .--.  |   |  |_)  |  \   \/   /  |  |__      |  | |  | |  | 
+|  | |_ | |  |  |  | |  |  |  | |  |  |  |   |   _  <    \_    _/   |   __|     |  | |  | |  | 
+|  |__| | |  `--'  | |  `--'  | |  '--'  |   |  |_)  |     |  |     |  |____    |__| |__| |__| 
+ \______|  \______/   \______/  |_______/    |______/      |__|     |_______|   (__) (__) (__) 
+                                                                                               """)
+            break
 
         else:
             print("PLEASE ENTER A VALID CODE")
