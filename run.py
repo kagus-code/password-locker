@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.9
 from passwordlocker import User
 from passwordlocker import Credentials
+import os
 
 
 def create_user(username, password):
@@ -34,7 +35,7 @@ def check_existing_user(username, password):
     # end of user functions
 
 
-def create_credentials(account, username, password):
+def create_credentials(account, user_name, pass_word):
     '''
     function add credentials 
     '''
@@ -42,18 +43,18 @@ def create_credentials(account, username, password):
     return new_credentials
 
 
-def save_credentials(credentials):
+def save_credential(credentials):
     '''
     function to save credentials
     '''
-    return credentials.save_credentials()
+    credentials.save_credentials()
 
 
 def delete_credentials(credentials):
     '''
     function to delete credentials
     '''
-    return credentials.delete_credentials()
+    credentials.delete_credentials()
 
 
 def display_credentials():
@@ -71,30 +72,21 @@ def generate_password():
 
 
 def main():
-    while True:
-        print("Welcome to PassVault\nlg--Log in to Account. \nsu--Don't have an Account? Sign up")
-        code = input().lower()
-        if code == 'lg':
-            print("*"*50)
-            print("Enter your User name and your Password to log in:")
-            print('*' * 50)
 
-            username = input("Username :")
+    print("Welcome to PassVault  Sign up for an account below")
+    username = input("Enter your desired username : ")
+    password = input("Enter password :")
+    # create and save new user
+    save_user(create_user(username, password))
 
-            password = input("Password :")
+    print("*"*50)
+    print(f"Log in to your account to proceed")
+    print("*"*50)
 
-            if check_existing_user(username, password):
-                print("-"*10)
-                print(f"Welcome to your PassVault Account {username}")
-                print("-"*10)
-                print('\n')
-                continue
+    username = input("Username :")
 
-            else:
-                print("-"*10)
-                print('Please enter a valid username or password !')
-                print("-"*10)
-                break
+    password = input("Password :")
+    os.system('clear')
 
 
 if __name__ == '__main__':
