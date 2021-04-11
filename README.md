@@ -19,7 +19,7 @@ This project was generated with [Python](https://www.python.org/downloads/releas
 - Change directory to the project directory
 - Open project on VSCode
 
-##### Running the Application
+### Running the Application
 
 - To run the application, open the cloned file in terminal and run the following commands:
 
