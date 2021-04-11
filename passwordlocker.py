@@ -94,3 +94,12 @@ class Credentials:
         for credential in cls.credentials_list:
             if credential.account == account:
                 return credential
+
+    @classmethod
+    def credential_exists(cls, account):
+        '''
+        method to check if account exists in credentials saved 
+        '''
+        for credential in cls.credentials_list:
+            if credential.account == account:
+                return True

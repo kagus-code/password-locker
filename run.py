@@ -92,6 +92,13 @@ def find_credential(account):
     return Credentials.find_by_account(account)
 
 
+def check_existing_credentials(account):
+    '''
+    Function to checkif a credential exists with that account name and return Boolean
+    '''
+    return Credentials.credential_exists(account)
+
+
 def main():
     print("""  +-+-+-+-+-+-+   +-+-+-+-+-+-+-+   +-+-+-+   +-+-+   +-+-+-+-+-+-+-+ +-+-+-+-+
  |P|l|e|a|s|e|   |s|i|g|n|-|u|p|   |f|o|r|   |a|n|   |a|c|c|o|u|n|t| |h|e|r|e|
@@ -181,16 +188,20 @@ def main():
                     print("PLease enter YES(y) or NO(n)")
                     continue
         elif code_cred == 'del':
+
             if display_credentials():
                 print('\n')
                 print("Enter the name of the account you want to delete ")
                 account = input()
-                credential = find_credential(account)
-                delete_credentials(credential)
-                print("\n")
-                print(
-                    f"You have deleted credentials for the account name {credential.account} successfully")
-
+                if check_existing_credentials(account):
+                    credential = find_credential(account)
+                    delete_credentials(credential)
+                    print("\n")
+                    print(
+                        f"You have deleted credentials for the account name {credential.account} successfully")
+                else:
+                    print(
+                        f"You have no credentials saved with the Account name {account}")
             else:
                 print("\n")
                 print(
@@ -198,6 +209,7 @@ def main():
                 print("_"*30)
 
         elif code_cred == 'help':
+            os.system('clear')
             print("-"*50)
             print(f"DASHBOARD of {username}'s PASS-VAUL ACCOUNT ")
             print("-"*50)
