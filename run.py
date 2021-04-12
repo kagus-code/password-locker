@@ -236,6 +236,7 @@ def main():
             continue
 
     else:
+        os.system('clear')
         print("-"*10)
         print('Please Reload and enter a valid username or password !')
         print("-"*10)
